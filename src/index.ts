@@ -12,11 +12,11 @@ import * as fetch from 'isomorphic-fetch'
 
 import { fetchToken } from './fetchToken'
 import { Connection, Config } from './Connection'
-export * from './Connection'
 
-import { ApiUser, ApiUsers } from './types/User'
-import { ApiProject, ApiProjects } from './types/Project'
-import { ApiLocation, ApiLocations } from './types/Location'
+import { ApiUser, ApiProjects, ApiProject, ApiLocation, ApiLocations } from './types'
+export * from './types'
+
+export * from './Connection'
 
 /**
  * Perform a request with desired verb on API endPoint
@@ -43,7 +43,7 @@ export const post = perform('POST')
 export const patch = perform('PATCH')
 
 export const getUsers =
-  (api: Connection, page: number): Promise<ApiUsers> =>
+  (api: Connection, page: number): Promise<ApiUser> =>
     get(api, `users?page[number]=${page}`)
 
 export const getUser =
