@@ -27,7 +27,7 @@ export const perform = (verb: string) =>
       api.getToken()
         .then(token =>
           fetch(`${api.entryPoint}/${endPoint}`, {
-            method: 'POST',
+            method: verb,
             headers: {
               'Authorization': `Bearer ${token}`
             }
