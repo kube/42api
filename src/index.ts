@@ -18,7 +18,8 @@ import {
   ApiProject, ApiProjects,
   ApiLocation, ApiLocations,
   ApiCampus, ApiCampuses,
-  ApiRole, ApiRoles
+  ApiRole, ApiRoles,
+  ApiSkill, ApiSkills
 } from './types'
 export * from './types'
 
@@ -96,3 +97,15 @@ export const getRoles =
 export const getUserRoles =
   (api: Connection, userId: number): Promise<ApiRoles> =>
     get(api, `users/${userId}/roles`)
+
+export const getSkills =
+  (api: Connection): Promise<ApiSkills> =>
+    get(api, `skills`)
+
+export const getProjectSkills =
+  (api: Connection, projectId: number): Promise<ApiSkills> =>
+    get(api, `projects/${projectId}/skills`)
+
+export const getCursusSkills =
+  (api: Connection, cursusId: number): Promise<ApiSkills> =>
+    get(api, `cursus/${cursusId}/skills`)

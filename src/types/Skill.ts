@@ -8,9 +8,10 @@
      ## ## ## :##
       ## ## ##*/
 
-export * from './User'
-export * from './Project'
-export * from './Location'
-export * from './Campus'
-export * from './Role'
-export * from './Skill'
+export type ApiSkill = {
+  id: number,
+  name: string,
+  created_at: string
+}
+
+export type ApiSkills = ApiSkill[]
