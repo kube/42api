@@ -13,7 +13,12 @@ import * as fetch from 'isomorphic-fetch'
 import { fetchToken } from './fetchToken'
 import { Connection, Config } from './Connection'
 
-import { ApiUser, ApiProjects, ApiProject, ApiLocation, ApiLocations } from './types'
+import {
+  ApiUser, ApiUsers,
+  ApiProject, ApiProjects,
+  ApiLocation, ApiLocations,
+  ApiCampus, ApiCampuses
+} from './types'
 export * from './types'
 
 export * from './Connection'
@@ -42,8 +47,13 @@ export const get = perform('GET')
 export const post = perform('POST')
 export const patch = perform('PATCH')
 
+type getUsersArgs = {
+  login?: string,
+  page?: number
+}
+
 export const getUsers =
-  (api: Connection, page: number): Promise<ApiUser> =>
+  (api: Connection, page: number): Promise<ApiUsers> =>
     get(api, `users?page[number]=${page}`)
 
 export const getUser =
@@ -67,5 +77,13 @@ export const getUserLocations =
     get(api, `locations/${userId}`)
 
 export const getCampusLocations =
-  (api: Connection, campudId: number): Promise<ApiLocations> =>
-    get(api, `locations/${campudId}`)
+  (api: Connection, campusId: number): Promise<ApiLocations> =>
+    get(api, `locations/${campusId}`)
+
+export const getCampuses =
+  (api: Connection): Promise<ApiCampus> =>
+    get(api, `campus`)
+
+export const getCampus =
+  (api: Connection, campusId: number): Promise<ApiCampus> =>
+    get(api, `campus/${campusId}`)
