@@ -1,0 +1,35 @@
+{
+  "name": "42api",
+  "version": "0.0.1",
+  "description": "42 api library",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kube/42api.git"
+  },
+  "keywords": [
+    "42",
+    "api",
+    "rest"
+  ],
+  "author": "Chris Feijoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kube/42api/issues"
+  },
+  "homepage": "https://github.com/kube/42api#readme",
+  "devDependencies": {
+    "@types/node": "^6.0.45",
+    "typescript": "^2.0.3"
+  },
+  "dependencies": {
+    "@types/form-data": "0.0.32",
+    "@types/isomorphic-fetch": "0.0.31",
+    "form-data": "^2.1.1",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
