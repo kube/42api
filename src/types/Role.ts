@@ -8,8 +8,10 @@
      ## ## ## :##
       ## ## ##*/
 
-export * from './User'
-export * from './Project'
-export * from './Location'
-export * from './Campus'
-export * from './Role'
+export type ApiRole = {
+  id: number,
+  name: string,
+  description: string
+}
+
+export type ApiRoles = ApiRole[]

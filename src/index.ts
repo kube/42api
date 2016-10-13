@@ -17,7 +17,8 @@ import {
   ApiUser, ApiUsers,
   ApiProject, ApiProjects,
   ApiLocation, ApiLocations,
-  ApiCampus, ApiCampuses
+  ApiCampus, ApiCampuses,
+  ApiRole, ApiRoles
 } from './types'
 export * from './types'
 
@@ -87,3 +88,11 @@ export const getCampuses =
 export const getCampus =
   (api: Connection, campusId: number): Promise<ApiCampus> =>
     get(api, `campus/${campusId}`)
+
+export const getRoles =
+  (api: Connection): Promise<ApiRoles> =>
+    get(api, `roles`)
+
+export const getUserRoles =
+  (api: Connection, userId: number): Promise<ApiRoles> =>
+    get(api, `users/${userId}/roles`)
