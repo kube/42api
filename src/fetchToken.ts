@@ -10,7 +10,7 @@
 
 import * as fetch from 'isomorphic-fetch'
 import * as FormData from 'form-data'
-import { Connection } from './createConnection'
+import { Connection } from './Connection'
 
 /**
  * Helper to create proper FormData for POST requests body
@@ -27,7 +27,7 @@ const formData = (body: { [key: string]: string }) => {
  * Get API Access Token
  */
 export const fetchToken = (api: Connection) =>
-  new Promise<String>((resolve, reject) =>
+  new Promise<string>((resolve, reject) =>
     fetch(api.tokenUrl, {
       method: 'POST',
       body: formData({

@@ -11,8 +11,8 @@
 import * as fetch from 'isomorphic-fetch'
 
 import { fetchToken } from './fetchToken'
-import { Connection, Config } from './createConnection'
-export * from './createConnection'
+import { Connection, Config } from './Connection'
+export * from './Connection'
 
 import { ApiUser, ApiUsers } from './types/User'
 import { ApiProject, ApiProjects } from './types/Project'
@@ -24,7 +24,7 @@ import { ApiLocation, ApiLocations } from './types/Location'
 export const perform = (verb: string) =>
   (api: Connection, endPoint: string) =>
     new Promise((resolve, reject) =>
-      fetchToken(api)
+      api.getToken()
         .then(token =>
           fetch(`${api.entryPoint}/${endPoint}`, {
             method: 'POST',
