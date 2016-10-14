@@ -9,6 +9,7 @@
       ## ## ##*/
 
 import * as fetch from 'isomorphic-fetch'
+import { formatQuerystring } from './querystring'
 
 import { fetchToken } from './fetchToken'
 import { Connection, Config } from './Connection'
@@ -26,14 +27,31 @@ export * from './types'
 export * from './Connection'
 
 /**
+ * Generic type of QueryString args for 42 api
+ */
+export type QueryStringArgs = {
+  page?: {
+    number?: number,
+    size?: number
+  },
+  filter?: {
+    [key: string]: number | boolean | string | (string | number)[]
+  },
+  sort?: string[]
+}
+
+export type ApiRequest<T> =
+  (api: Connection, ...params: any[]) => Promise<T>
+
+/**
  * Perform a request with desired verb on API endPoint
  */
 export const perform = (verb: string) =>
-  (api: Connection, endPoint: string) =>
+  (api: Connection, endPoint: string, args?: QueryStringArgs) =>
     new Promise((resolve, reject) =>
       api.getToken()
         .then(token =>
-          fetch(`${api.entryPoint}/${endPoint}`, {
+          fetch(`${api.entryPoint}/${endPoint}?${formatQuerystring(args)}`, {
             method: verb,
             headers: {
               'Authorization': `Bearer ${token}`
@@ -49,63 +67,58 @@ export const get = perform('GET')
 export const post = perform('POST')
 export const patch = perform('PATCH')
 
-type getUsersArgs = {
-  login?: string,
-  page?: number
-}
+export const getUsers: ApiRequest<ApiUsers> =
+  (api: Connection, args?: QueryStringArgs) =>
+    get(api, `users`)
 
-export const getUsers =
-  (api: Connection, page: number): Promise<ApiUsers> =>
-    get(api, `users?page[number]=${page}`)
+export const getUser: ApiRequest<ApiUser> =
+  (api: Connection, userId: number, args?: QueryStringArgs) =>
+    get(api, `users/${userId}`, args)
 
-export const getUser =
-  (api: Connection, userId: number): Promise<ApiUser> =>
-    get(api, `users/${userId}`)
+export const getProjects: ApiRequest<ApiProjects> =
+  (api: Connection, args?: QueryStringArgs) =>
+    get(api, `projects`, args)
 
-export const getProjects =
-  (api: Connection, page: number): Promise<ApiProjects> =>
-    get(api, `projects?page[number]=${page}`)
+export const getProject: ApiRequest<ApiProject> =
+  (api: Connection, projectId: number, args?: QueryStringArgs) =>
+    get(api, `projects/${projectId}`, args)
 
-export const getProject =
-  (api: Connection, projectId: number): Promise<ApiProject> =>
-    get(api, `projects/${projectId}`)
+export const getLocations: ApiRequest<ApiLocations> =
+  (api: Connection, args?: QueryStringArgs) =>
+    get(api, `locations`, args)
 
-export const getLocations =
-  (api: Connection): Promise<ApiLocations> =>
-    get(api, `locations`)
+export const getUserLocations: ApiRequest<ApiLocations> =
+  (api: Connection, userId: number, args?: QueryStringArgs) =>
+    get(api, `locations/${userId}`, args)
 
-export const getUserLocations =
-  (api: Connection, userId: number): Promise<ApiLocations> =>
-    get(api, `locations/${userId}`)
+export const getCampusLocations: ApiRequest<ApiLocations> =
+  (api: Connection, campusId: number, args?: QueryStringArgs) =>
+    get(api, `locations/${campusId}`, args)
 
-export const getCampusLocations =
-  (api: Connection, campusId: number): Promise<ApiLocations> =>
-    get(api, `locations/${campusId}`)
+export const getCampuses: ApiRequest<ApiCampus> =
+  (api: Connection, args?: QueryStringArgs) =>
+    get(api, `campus`, args)
 
-export const getCampuses =
-  (api: Connection): Promise<ApiCampus> =>
-    get(api, `campus`)
+export const getCampus: ApiRequest<ApiCampus> =
+  (api: Connection, campusId: number, args?: QueryStringArgs) =>
+    get(api, `campus/${campusId}`, args)
 
-export const getCampus =
-  (api: Connection, campusId: number): Promise<ApiCampus> =>
-    get(api, `campus/${campusId}`)
+export const getRoles: ApiRequest<ApiRoles> =
+  (api: Connection, args?: QueryStringArgs) =>
+    get(api, `roles`, args)
 
-export const getRoles =
-  (api: Connection): Promise<ApiRoles> =>
-    get(api, `roles`)
+export const getUserRoles: ApiRequest<ApiRoles> =
+  (api: Connection, userId: number, args?: QueryStringArgs) =>
+    get(api, `users/${userId}/roles`, args)
 
-export const getUserRoles =
-  (api: Connection, userId: number): Promise<ApiRoles> =>
-    get(api, `users/${userId}/roles`)
+export const getSkills: ApiRequest<ApiSkills> =
+  (api: Connection, args?: QueryStringArgs) =>
+    get(api, `skills`, args)
 
-export const getSkills =
-  (api: Connection): Promise<ApiSkills> =>
-    get(api, `skills`)
+export const getProjectSkills: ApiRequest<ApiSkills> =
+  (api: Connection, projectId: number, args?: QueryStringArgs) =>
+    get(api, `projects/${projectId}/skills`, args)
 
-export const getProjectSkills =
-  (api: Connection, projectId: number): Promise<ApiSkills> =>
-    get(api, `projects/${projectId}/skills`)
-
-export const getCursusSkills =
-  (api: Connection, cursusId: number): Promise<ApiSkills> =>
-    get(api, `cursus/${cursusId}/skills`)
+export const getCursusSkills: ApiRequest<ApiSkills> =
+  (api: Connection, cursusId: number, args?: QueryStringArgs) =>
+    get(api, `cursus/${cursusId}/skills`, args)
