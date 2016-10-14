@@ -69,7 +69,7 @@ export const patch = perform('PATCH')
 
 export const getUsers: ApiRequest<ApiUsers> =
   (api: Connection, args?: QueryStringArgs) =>
-    get(api, `users`)
+    get(api, `users`, args)
 
 export const getUser: ApiRequest<ApiUser> =
   (api: Connection, userId: number, args?: QueryStringArgs) =>
