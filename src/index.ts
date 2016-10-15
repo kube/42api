@@ -76,7 +76,7 @@ export const getUser =
 export const getUserProject =
   (conn: Connection, userProjectId: Id,
     args?: QueryStringArgs): Promise<ApiUserProject> =>
-    get(conn, `cursus/projects_users/${userProjectId}`, args)
+    get(conn, `projects_users/${userProjectId}`, args)
 
 export const getUserProjects =
   (conn: Connection, userId: Id, args?: QueryStringArgs): Promise<ApiUserProject[]> =>
