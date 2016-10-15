@@ -8,8 +8,10 @@
      ## ## ## :##
       ## ## ##*/
 
+import { Id } from './Id'
+
 export type ApiLocation = {
-  id: number,
+  id: Id,
   begin_at: string,
   end_at: string,
   primary: boolean,
@@ -17,9 +19,9 @@ export type ApiLocation = {
   row: number,
   post: number,
   host: string,
-  campus_id: number,
+  campus_id: Id,
   user: {
-    id: number,
+    id: Id,
     login: string,
     url: string
   }

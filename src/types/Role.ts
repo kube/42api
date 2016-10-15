@@ -8,8 +8,10 @@
      ## ## ## :##
       ## ## ##*/
 
+import { Id } from './Id'
+
 export type ApiRole = {
-  id: number,
+  id: Id,
   name: string,
   description: string
 }

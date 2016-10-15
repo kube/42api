@@ -8,24 +8,26 @@
      ## ## ## :##
       ## ## ##*/
 
+import { Id } from './Id'
+
 export type ApiCampusEndpoint = {
-  id: number,
+  id: Id,
   description: string,
   created_at: string,
   updated_at: string
 }
 
 export type ApiCampus = {
-  id: number,
+  id: Id,
   name: string,
   time_zone: string,
   language: {
-    id: number,
+    id: Id,
     name: string,
     identifier: string
   },
   users_count: number,
-  vogsphere_id: number,
+  vogsphere_id: Id,
   endpoint: ApiCampusEndpoint | null
 }
 

@@ -8,28 +8,18 @@
      ## ## ## :##
       ## ## ##*/
 
+import { Id } from './Id'
+import { ApiUserProject } from './UserProject'
+import { ApiCampuses } from './Campus'
+
 export type ApiUsers = {
-  id: number,
+  id: Id,
   login: string,
   url: string
 }[]
 
-export type ApiUserProject = {
-  id: number,
-  occurrence: number,
-  final_mark: number,
-  status: string,
-  'validated?': boolean,
-  current_team_id: number,
-  project: {
-    id: number,
-    name: string,
-    slug: string
-  }
-}
-
 export type ApiUser = {
-  id: number,
+  id: Id,
   email: string,
   login: string,
   first_name: string,
@@ -46,20 +36,20 @@ export type ApiUser = {
   wallet: number,
   groups: any[],
   cursus_users: {
-    id: number,
+    id: Id,
     begin_at: string,
     end_at: string,
     grade: string,
     level: number,
     skills: any[],
-    cursus_id: number,
+    cursus_id: Id,
     user: {
-      id: number,
+      id: Id,
       login: string,
       url: string
     },
     cursus: {
-      id: number,
+      id: Id,
       created_at: string,
       name: string,
       slug: string
@@ -67,7 +57,7 @@ export type ApiUser = {
   }[],
   projects_users: ApiUserProject[],
   achievements: {
-    id: number,
+    id: Id,
     name: string,
     description: string,
     tier: string,
@@ -79,7 +69,7 @@ export type ApiUser = {
   }[],
   titles: any[],
   partnerships: {
-    id: number,
+    id: Id,
     name: string,
     slug: string,
     tier: number,
@@ -87,35 +77,22 @@ export type ApiUser = {
     partnerships_users_url: string
   }[],
   patroned: {
-    id: number,
-    user_id: number,
-    godfather_id: number,
+    id: Id,
+    user_id: Id,
+    godfather_id: Id,
     ongoing: boolean,
     created_at: string,
     updated_at: string
   }[],
   patroning: any[],
   expertises_users: {
-    id: number,
-    expertise_id: number,
+    id: Id,
+    expertise_id: Id,
     interested: boolean,
     value: number,
     contact_me: boolean,
     created_at: string,
-    user_id: number
+    user_id: Id
   }[],
-  campus: {
-    id: number,
-    name: string,
-    time_zone: string,
-    language: {
-      id: number,
-      name: string,
-      identifier: string,
-      created_at: string,
-      updated_at: string
-    },
-    users_count: number,
-    vogsphere_id: number
-  }[]
+  campus: ApiCampuses
 }

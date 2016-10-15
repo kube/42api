@@ -8,55 +8,55 @@
      ## ## ## :##
       ## ## ##*/
 
-export type ApiProjects = ApiProject[]
+import { Id } from './Id'
 
 export type ApiProjectProject = {
-  id: number,
+  id: Id,
   created_at: string,
   name: string,
   slug: string
 }
 
 export type ApiProjectCursus = {
-  id: number,
+  id: Id,
   created_at: string,
   name: string,
   slug: string
 }
 
 export type ApiProjectSkill = {
-  id: number,
+  id: Id,
   name: string,
   created_at: string
 }
 
 export type ApiProjectTag = {
-  id: number,
+  id: Id,
   name: string
 }
 
 export type ApiProjectScale = {
-  id: number,
+  id: Id,
   correction_number: number,
   is_primary: boolean
 }
 
 export type ApiProjectUpload = {
-  id: number,
+  id: Id,
   name: string,
 }
 
 export type ApiProjectProjectSession = {
-  id: number,
+  id: Id,
   solo: boolean,
   begin_at: string,
   end_at: string,
   estimate_time: number,
   duration_days: number,
   terminating_after: string,
-  project_id: number,
-  campus_id: number,
-  cursus_id: number,
+  project_id: Id,
+  campus_id: Id,
+  cursus_id: Id,
   created_at: string,
   updated_at: string,
   max_people: number,
@@ -67,7 +67,7 @@ export type ApiProjectProjectSession = {
 }
 
 export type ApiProject = {
-  id: number,
+  id: Id,
   name: string,
   slug: string,
   description: string,
@@ -84,3 +84,5 @@ export type ApiProject = {
   tags: ApiProjectTag[],
   project_sessions: ApiProjectProjectSession
 }
+
+export type ApiProjects = ApiProject[]
