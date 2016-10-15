@@ -1,6 +1,6 @@
 {
   "name": "42api",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "42 api library",
   "main": "lib/index.js",
   "scripts": {
