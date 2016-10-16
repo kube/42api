@@ -96,7 +96,7 @@ export const getLocations =
 
 export const getUserLocations =
   (conn: Connection, userId: Id, args?: QueryStringArgs): Promise<ApiLocations> =>
-    get(conn, `locations/${userId}`, args)
+    get(conn, `users/${userId}/locations`, args)
 
 export const getCampusLocations =
   (conn: Connection, campusId: Id, args?: QueryStringArgs): Promise<ApiLocations> =>
